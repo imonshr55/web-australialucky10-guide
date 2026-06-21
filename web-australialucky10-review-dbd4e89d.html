@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>澳洲幸运10 · 知识库入口</title>
+    <style>
+        /* reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e1e1e;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        /* typography */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            line-height: 1.2;
+            color: #121212;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-top: 2.8rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #e6e6e6;
+            color: #1a1a1a;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 1.8rem;
+            margin-bottom: 0.4rem;
+            color: #2c2c2c;
+        }
+
+        p, li, .note, .faq-item {
+            font-size: 1rem;
+            color: #3b3b3b;
+        }
+
+        a {
+            color: #0055aa;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #0055aa;
+            color: #003d7a;
+        }
+
+        /* spacing & helpers */
+        .subhead {
+            font-size: 1.05rem;
+            color: #5a5a5a;
+            margin-bottom: 2rem;
+        }
+
+        .slim-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .slim-list li {
+            margin-bottom: 0.65rem;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+
+        .slim-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #8a8a8a;
+            font-weight: bold;
+        }
+
+        /* card-like modules */
+        .info-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 1.8rem;
+            margin: 2.2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.04);
+            border: 1px solid #efefef;
+        }
+
+        .info-card p {
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-card .label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid #b0b0b0;
+            padding-left: 10px;
+        }
+
+        .highlight-box {
+            background: #f5f7fa;
+            border-radius: 14px;
+            padding: 1.4rem 1.6rem;
+            margin: 2rem 0;
+            border-left: 0;
+            border: 1px solid #e8ecf1;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0.6rem;
+        }
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            border: 1px solid #ececec;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 550;
+            margin-bottom: 0.2rem;
+            color: #222;
+        }
+
+        .faq-item p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #4a4a4a;
+        }
+
+        .button-outline {
+            display: inline-block;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            border: 1px solid #c8c8c8;
+            color: #2a2a2a;
+            font-size: 0.9rem;
+            background: transparent;
+            transition: background 0.1s, border-color 0.1s;
+            margin-top: 0.4rem;
+            text-decoration: none;
+        }
+
+        .button-outline:hover {
+            background: #f0f0f0;
+            border-color: #a0a0a0;
+            color: #111;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: #6a6a6a;
+            margin: 0.3rem 0 1.8rem;
+            border-left: 3px solid #d0d0d0;
+            padding-left: 1rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e2e2;
+            margin: 2.8rem 0 1.2rem;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+
+        /* responsive */
+        @media (max-width: 520px) {
+            body {
+                padding: 1.2rem 1rem 3rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+                margin-top: 2rem;
+            }
+            .info-card {
+                padding: 1.2rem 1.2rem;
+            }
+            .highlight-box {
+                padding: 1rem 1.2rem;
+            }
+            .faq-item {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero / title -->
+    <h1>再次回到这里</h1>
+    <p class="tagline">关于 <strong>澳洲幸运10</strong> 的知识梳理 · 持续关注与收藏</p>
+
+    <!-- 说明区：记录与收藏意义 -->
+    <div class="info-card">
+        <span class="label">📌 说明</span>
+        <p>如果你曾经到过<a href="https://web-australialucky10.com">澳洲幸运10</a>这个站点，应该对它的信息密度有印象。每次回访，我都会重新梳理一遍自己对游戏规则、玩法逻辑以及数据表现的理解。这个页面就像一本随时可以翻开的笔记本，把我在平台上反复验证过的要点整理在一起。</p>
+        <p>为了不遗漏任何值得留意的细节，我习惯把关键页面添加到浏览器书签，方便下一次直接打开。无论你是刚接触还是想重新熟悉，这里的内容都来自真实的阅读与比对，不是二手转述。</p>
+    </div>
+
+    <!-- 目录感布局：核心知识点 -->
+    <h2>· 知识目录 ·</h2>
+    <ul class="slim-list">
+        <li><strong>玩法结构</strong> – 每期开奖数字的选择范围、组合方式与常见投注类型。</li>
+        <li><strong>数据观察</strong> – 历史号码分布、冷热趋势、和值跨度等常见分析维度。</li>
+        <li><strong>规则边界</strong> – 开奖频率、封盘时间、兑奖期限等平台既定框架。</li>
+        <li><strong>查阅路径</strong> – 首页公告、规则页、往期结果与统计专区。</li>
+    </ul>
+
+    <!-- 提示区：收藏与复访建议 -->
+    <div class="highlight-box">
+        <p style="font-weight:500; margin-bottom:0.2rem;">🧭 收藏提示</p>
+        <p>建议把 <a href="https://web-australialucky10.com">澳洲幸运10</a> 添加到浏览器收藏夹或手机主屏幕。网站内容会随着时间更新，尤其是规则说明和开奖历史部分，定期回看能帮助你保持对最新信息的同步。我每次重新打开都会先扫一遍首页有没有新的公告条——细节往往藏在更新日志里。</p>
+        <p style="margin-top:0.8rem;">另外，可以留意平台是否有改动开奖时间或玩法表述的说明，这些变动会直接影响到你对数据的理解。</p>
+    </div>
+
+    <!-- 相关信息区：FAQ 摘要 + 常见疑惑 -->
+    <h2>· 相关信息 ·</h2>
+    <div class="faq-grid">
+        <div class="faq-item">
+            <strong>为什么需要重新了解规则？</strong>
+            <p>即使你之前已经很熟悉，平台也可能在不显眼的位置调整条款。隔一段时间回访 <a href="https://web-australialucky10.com">澳洲幸运10</a> 的规则区域，能帮你确认自己掌握的信息仍然准确。</p>
+        </div>
+        <div class="faq-item">
+            <strong>收藏后如何快速定位？</strong>
+            <p>大多数浏览器支持为书签重命名。建议命名为「澳洲幸运10 · 知识库」或直接使用站点原名，配合文件夹管理更方便。</p>
+        </div>
+        <div class="faq-item">
+            <strong>页面内容会过时吗？</strong>
+            <p>任何公开信息都有时效。本页只整理通用知识框架，具体数字和最新公告请以网站实时显示为准。</p>
+        </div>
+    </div>
+
+    <!-- 额外提示区：持续关注 -->
+    <h2 style="margin-top:2.2rem;">· 持续关注 ·</h2>
+    <p>保持关注的意思是：不只是点开一次，而是把<a href="https://web-australialucky10.com">澳洲幸运10</a>当作一个长期信息源。我每隔一两周会打开看看开奖统计有没有新增图表，或者规则页有没有补充例子。这种节奏不会太频繁，但足够让我对走势保持感觉。</p>
+    <p style="margin-top:0.7rem;">如果你也打算把这里当作一个参考资料站，不妨收藏之后设置一个简单的日历提醒，比如每两周查看一次首页。知识是流动的，反复接触才能沉淀。</p>
+
+    <!-- 轻量分割线 -->
+    <hr>
+
+    <!-- 一句话收藏指引 -->
+    <div style="text-align:center; margin:1.2rem 0 0.2rem;">
+        <a class="button-outline" href="https://web-australialucky10.com" style="border-color:#b5b5b5;">澳洲幸运10</a>
+        <p style="font-size:0.9rem; color:#7a7a7a; margin-top:1rem;">把链接放在手边，随时查阅</p>
+    </div>
+
+    <div class="footer-note">
+        <span>资料整理 · 持续更新 · 以官网最新内容为准</span>
+    </div>
+
+</div>
+</body>
+</html>
