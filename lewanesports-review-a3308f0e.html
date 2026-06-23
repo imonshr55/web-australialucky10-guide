@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>乐玩体育 · 轻松看懂赛事与运动数据</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f3f8fc;
+      color: #1e2a3e;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    .page {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 2rem 0 3.5rem;
+    }
+
+    /* 卡片网格基调 */
+    .grid-card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 6px 18px rgba(0, 30, 50, 0.06), 0 2px 4px rgba(0, 40, 60, 0.03);
+      padding: 1.8rem 1.6rem;
+      transition: all 0.2s ease;
+    }
+
+    .grid-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 110, 130, 0.08);
+    }
+
+    /* 蓝绿点缀 */
+    .accent-badge {
+      display: inline-block;
+      background: #d0f0ee;
+      color: #126b6b;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      margin-bottom: 0.7rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: #103b3b;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #38b2a0;
+      padding-left: 0.8rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: #2c3d4e;
+    }
+
+    a {
+      color: #0e7c7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #b0d9d6;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #0c5f5c;
+      border-bottom: 1px solid #0c5f5c;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #e3f3f0 0%, #d7ece8 100%);
+      border-radius: 32px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-text {
+      flex: 1 1 280px;
+    }
+
+    .hero-text .sub {
+      font-size: 0.9rem;
+      color: #2a6b65;
+      background: rgba(255,255,255,0.5);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      margin-bottom: 0.6rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-highlight {
+      background: #ffffffcc;
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-top: 0.5rem;
+      border: 1px solid #b7dfda;
+    }
+
+    .hero-highlight a {
+      border-bottom: none;
+      font-weight: 600;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6rem;
+      margin: 2.5rem 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .feature-list li {
+      padding: 0.5rem 0 0.5rem 1.8rem;
+      position: relative;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #e3f0ed;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #2faa9a;
+      font-size: 1.2rem;
+    }
+
+    .suggestion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin: 1.8rem 0 2.2rem;
+    }
+
+    .suggestion-item {
+      background: #f7fcfb;
+      border-radius: 24px;
+      padding: 1.3rem 1rem;
+      border: 1px solid #d1e9e4;
+      text-align: center;
+    }
+
+    .suggestion-item .icon-symbol {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #1a7a70;
+    }
+
+    .suggestion-item p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    .notice-box {
+      background: #ebf7f4;
+      border-left: 6px solid #3bb0a0;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 3px 10px rgba(0, 30, 30, 0.04);
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #e2efec;
+      padding: 0.4rem 0;
+    }
+
+    .faq-mini summary {
+      font-weight: 540;
+      cursor: pointer;
+      color: #155e57;
+      padding: 0.3rem 0;
+    }
+
+    .faq-mini details[open] summary {
+      color: #0d4944;
+    }
+
+    .faq-mini details p {
+      margin: 0.5rem 0 0.8rem 0.3rem;
+      font-size: 0.92rem;
+      color: #2e4a4a;
+    }
+
+    .footer-note {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5b7874;
+      border-top: 1px solid #cde3df;
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      body { padding: 0 0.6rem; }
+      .page { padding: 1.5rem 0 2.5rem; }
+      h1 { font-size: 1.7rem; }
+      .grid-2col { grid-template-columns: 1fr; gap: 1.2rem; }
+      .hero { padding: 1.8rem 1.2rem; }
+      .grid-card { padding: 1.4rem 1.2rem; }
+      .suggestion-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .suggestion-grid { grid-template-columns: 1fr; }
+      .hero-highlight { font-size: 0.9rem; }
+    }
+
+    /* 辅助间距 */
+    .mt-1 { margin-top: 1rem; }
+    .mb-half { margin-bottom: 0.3rem; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    
+    <!-- Hero 区域：一句话定位 -->
+    <div class="hero">
+      <div class="hero-text">
+        <span class="sub">⚡ 快速识别 · 赛事数据</span>
+        <h1>用 <span style="color: #1f8a7a;">乐玩体育</span> 看懂运动每一面</h1>
+        <p style="max-width: 450px;">不用复杂术语，不用费力搜索。这里把比赛、球队、球员信息整理成清晰的样子，让你花更少时间找到想看的内容。</p>
+        <div class="hero-highlight">
+          <span>🏅 日常浏览 → </span><a href="https://lewanesports.com">乐玩体育</a>
+        </div>
+      </div>
+      <div style="flex: 0 0 80px; text-align: center; font-size: 3rem; opacity: 0.4; color: #2f8f82;">⚽🏀</div>
+    </div>
+
+    <!-- 产品亮点：摘要式卡片网格 -->
+    <div class="grid-2col">
+      <div class="grid-card">
+        <div class="accent-badge">📋 摘要</div>
+        <h3>覆盖主流运动</h3>
+        <p>足球、篮球、网球、电竞及更多项目的基础数据与赛程——结构清晰，没有广告干扰，适合快速浏览。</p>
+        <ul class="feature-list">
+          <li>实时比分与近期战绩</li>
+          <li>联赛/杯赛分级浏览</li>
+          <li>简洁的移动端视图</li>
+        </ul>
+      </div>
+      <div class="grid-card">
+        <div class="accent-badge">✨ 亮点</div>
+        <h3>信息优先，少即是多</h3>
+        <p>去除了花哨的动效和弹窗，把空间留给比分、对阵和统计。页面加载轻快，没有多余注册步骤。</p>
+        <ul class="feature-list">
+          <li>深色模式可选（部分页面）</li>
+          <li>核心数据直接可见</li>
+          <li>导航分类直觉化</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 使用建议 / 场景卡片 (差异化小卡片) -->
+    <h2>🧩 适合这样用</h2>
+    <div class="suggestion-grid">
+      <div class="suggestion-item">
+        <span class="icon-symbol">📱</span>
+        <p><strong>通勤刷赛果</strong><br>快速下拉看比分，不费流量</p>
+      </div>
+      <div class="suggestion-item">
+        <span class="icon-symbol">📊</span>
+        <p><strong>对比球队数据</strong><br>胜率、进球、排名一目了然</p>
+      </div>
+      <div class="suggestion-item">
+        <span class="icon-symbol">🧑‍🤝‍🧑</span>
+        <p><strong>和朋友聊球前</strong><br>提前看一眼对阵背景</p>
+      </div>
+      <div class="suggestion-item">
+        <span class="icon-symbol">🔍</span>
+        <p><strong>查球员号码</strong><br> roster 信息整齐列出</p>
+      </div>
+    </div>
+
+    <!-- 可信但克制的访问说明 (notice box) -->
+    <div class="notice-box">
+      <span style="font-weight: 600; color: #125e57;">📌 关于访问</span>
+      <p style="margin-top: 0.4rem; margin-bottom: 0.2rem;">乐玩体育是一个公开的信息聚合站点，内容来源于公开赛事数据。网站本身不提供投注、博彩或任何违规服务。请根据当地法律合理使用。如果你只是想快速查看比赛信息，<a href="https://lewanesports.com">乐玩体育</a> 首页就能直接浏览当日热门赛事。</p>
+      <p style="font-size: 0.9rem; color: #306b63;">⚠️ 提示：部分外部链接会跳转到第三方数据页，浏览时请注意甄别。</p>
+    </div>
+
+    <!-- FAQ摘要 — 轻量问答，帮助理解用途 -->
+    <div class="faq-mini">
+      <h2 style="border-left-color: #6dc5b6; margin-bottom: 1rem;">❓ 常见疑问 · 快速了解</h2>
+      <details>
+        <summary>乐玩体育需要注册吗？</summary>
+        <p>不需要。大部分内容完全开放，直接打开就能看到比分、赛程等。部分深度统计可能需要加载第三方来源，但同样无需登录。</p>
+      </details>
+      <details>
+        <summary>数据更新快吗？</summary>
+        <p>实时数据接口通常延迟在 1-2 分钟以内，比赛进行中的关键事件（进球、红牌等）会较快同步。建议以官方直播为准。</p>
+      </details>
+      <details>
+        <summary>手机上看体验怎么样？</summary>
+        <p>页面专门适配了手机屏幕，文字和卡片会自适应。你可以在浏览器中直接添加书签，像使用一个轻应用一样。</p>
+      </details>
+      <details>
+        <summary>这个网站和体育博彩有关系吗？</summary>
+        <p>没有关系。站点定位是信息查询工具，不包含任何投注功能、赔率或引导。内容偏重赛事数据与基础统计。</p>
+      </details>
+    </div>
+
+    <!-- 一个额外自然嵌入链接的句子 (已嵌在notice中，这里再补一个不同位置) -->
+    <p style="margin-top: 1.8rem; font-size: 0.95rem; background: #f1faf8; padding: 0.6rem 1.2rem; border-radius: 40px; display: inline-block;">
+      🏟️ 如果你还没试过，可以直接通过 <a href="https://lewanesports.com">乐玩体育</a> 看看今天有哪些比赛。
+    </p>
+
+    <div class="footer-note">
+      <span>© 内容仅供参考 · 请合理使用 · 数据公开可查</span>
+    </div>
+  </div>
+</body>
+</html>
